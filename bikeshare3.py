@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 
 
-
 CITY_DATA = { 'chicago': r'\\bsh.corp.bshg.com\fredirect\SK\KOS\Pelletier\Documents\Python\udacity\chicago.csv',
               'new york city': r'\\bsh.corp.bshg.com\fredirect\SK\KOS\Pelletier\Documents\Python\udacity\new_york_city.csv',
               'washington': r'\\bsh.corp.bshg.com\fredirect\SK\KOS\Pelletier\Documents\Python\udacity\washington.csv' }
@@ -27,6 +26,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
+	
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         print('The data for the cities below are available.Press Q to quit.')
@@ -52,11 +52,7 @@ def get_filters():
         else:
             print("Invalid month. Please try again.")
 
-
-
     # get user input for day of week (all, monday, tuesday, ... sunday)
-
-
     while True:
         day = input("Enter a day of the week (Monday to Sunday) or all: ").lower()
         if day in DAY_DATA :
@@ -68,18 +64,6 @@ def get_filters():
 
     print('-'*40)
     return city, month, day
-
-
-    """
-    Loads data for the specified city and filters by month and day if applicable.
-
-    Args:
-        (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
-    Returns:
-        df - Pandas DataFrame containing city data filtered by month and day
-    """
 
 def load_data(city, month, day):
     # Load the city data into a DataFrame
@@ -96,7 +80,6 @@ def load_data(city, month, day):
         df['Month'] = df['Start Time'].dt.month
 
         # Filter the DataFrame by the specified month
-
         month_index = MONTH_DATA.index(month.lower()) + 1
         df = df[df['Month'] == month_index]
 
@@ -110,8 +93,6 @@ def load_data(city, month, day):
         df = df[df['Day of Week'] == day_index]
 
     print(df.shape)
-
- 
     return df
 
 def display_data(df):
@@ -151,13 +132,8 @@ def time_stats(df):
     # Display the most common start hour
     common_hour = df['Hour'].mode()[0]
     print('Most Common Start Hour:', common_hour)
-
-
-
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
@@ -177,10 +153,8 @@ def station_stats(df):
     common_trip = df.groupby(['Start Station', 'End Station']).size().idxmax()
     print('Most Frequent Trip (Start Station -> End Station):', common_trip)
 
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
@@ -195,15 +169,11 @@ def trip_duration_stats(df):
     # Display the mean travel time
     mean_travel_time = df['Trip Duration'].mean()
     print('Mean Travel Time:', mean_travel_time)
-
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
 def user_stats(df):
     """Displays statistics on bikeshare users."""
-
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
@@ -230,12 +200,8 @@ def user_stats(df):
         print('Most Common Birth Year:', most_common_birth_year)
     else:
         print('\nBirth year information not available.')
-
-
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def main():
     while True:
