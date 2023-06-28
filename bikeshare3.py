@@ -1,4 +1,4 @@
-import time
+t import time
 import pandas as pd
 import numpy as np
 
@@ -117,7 +117,7 @@ def load_data(city, month, day):
 def display_data(df):
     start_loc = 0
     while True:
-        display = input("Do you want to see 5 rows of data? Enter 'yes' or 'no': ")
+        display = input("Do you want to see the 5 next rows of data? Enter 'yes' or 'no': ")
         if display.lower() == 'yes':
             print(df.iloc[start_loc : start_loc+5])
             start_loc += 5
